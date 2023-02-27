@@ -5,62 +5,177 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
-
-    body {
-      overflow-x: hidden;
-    }
-
-    #root {
-      width: 100vw;
-      height: 100vh;
-      background-color: cadetblue;
-      /* flex-set */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* position setup */
-      position: relative;
-    }
-
-    #root > div {
-      /* div common shape */
-      width: 500px;
-      height: 500px;
-      border-radius: 250px;
-      opacity: 0.8;
-      /* position setup */
-      position: absolute;
-    }
-
-    #root > div:nth-child(1) {
-      margin-top: 300px;
-      margin-left: 300px;
-      background-color: salmon;
-      filter: blur(20px);
-    }
-
-    #root > div:nth-child(2) {
-      margin-top: 50px;
-      margin-left: -50px;
-      background-color: cornflowerblue;
-      filter: blur(20px);
-    }
-
-    #root > div:nth-child(3) {
-      margin-top: -100px;
-      margin-left: 50px;
-      background-color: coral;
-      filter: blur(10px);
-    }
-  </style>
+  <script src="./test.js"></script>
 </head>
 <body>
-  <div id="root">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <!-- <script src="./var.js"></script> -->
+  <script>
+
+    // 노수민
+    function dataList(a, b, c, d, e, f, g, h) {
+      let dataForm = {
+        parentData : document.createElement(a),
+        widthData : b,
+        heightData : c,
+        backgroundColorData : d,
+        displayData : e,
+        justifyContentData : f,
+        alignItemsData : g,
+        positionData : h,
+      }
+      return dataForm;
+    }
+
+    //노수민, 곽윤호
+    let data = dataList("div", "100vw", "100vh", "cadetblue", "flex", "center", "center", "relative")
+
+    let root_div = data.parentData;
+    root_div.id = 'root';
+    root_div.style.width = data.widthData;
+    root_div.style.height = data.heightData;
+    root_div.style.backgroundColor = data.backgroundColorData;
+    root_div.style.display = data.displayData;
+    root_div.style.justifyContent = data.justifyContentData;
+    root_div.style.alignItems = data.alignItemsData;
+    root_div.style.position = data.positionData;
+    document.body.appendChild(root_div);
+
+    //노수민
+    // let dataForm = {
+    //   parentData : document.createElement('div'),
+    //   widthData : "100vw",
+    //   heightData : "100vh",
+    //   backgroundColorData : "cadetblue",
+    //   displayData : "flex",
+    //   justifyContentData : "center",
+    //   alignItemsData : "center",
+    //   positionData : "relative",
+    // }
+
+
+    // let styleProperty = ["500px", "500px", "250px", "0.8", "absolute"];
+    
+    
+    /*-----test-----
+    function style(a,b,c,d,e) { //곽윤호
+      let div_child = document.getElementById('root').children[a]
+      div_child.style.width = b
+      div_child.style.height = c
+      div_child.style.backgroundColor = d
+      div_child.style.opacity = e
+    }
+    -----test-----*/
+    
+    
+    for(let i = 0; i < 3; i++){ //류은이
+      let div_child = document.createElement('div');
+      root_div.appendChild(div_child);
+      // let bb = div_child.style;
+      div_child.style.width = "500px"
+      div_child.style.height = "500px";
+      div_child.style.borderRadius = "250px";
+      div_child.style.opacity = "0.8";
+      div_child.style.position = "absolute";
+      if (i===0) { //노수민
+        childrenStyle(i, "300px", "300px", "salmon", "blur(20px)", "root");
+        div_child.addEventListener('click', movement)
+        console.dir(div_child);
+        // div_child.style.marginTop = "300px";
+        // div_child.style.marginLeft = "300px";
+        // div_child.style.backgroundColor = "salmon";
+        // div_child.style.filter = "blur(20px)";
+      }
+      else if (i===1) { // 곽윤호
+        childrenStyle(i, "50px", "-50px", "cornflowerblue", "blur(20px)", "root");
+        div_child.addEventListener('click', ABC)
+        div_child.style.position="relative"
+        // div_child.style.marginTop = "50px";
+        // div_child.style.marginLeft = "-50px";
+        // div_child.style.backgroundColor = "cornflowerblue";
+        // div_child.style.filter = "blur(20px)";
+      }
+      else if (i===2) { //류은이
+        childrenStyle(i,"-100px","50px","coral","blur(10px)","root");
+        div_child.addEventListener('click', changeColor)
+        div_child.addEventListener('click', moveCycle)
+        // div_child.style.marginTop="-100px";
+        // div_child.style.marginLeft="50px";
+        // div_child.style.backgroundColor="coral";
+        // div_child.style.filter="blur(10px)";
+      }
+    }
+    // 노수민
+    let divFirstMovementCount = 0
+    function movement() {
+      document.getElementById('root').children[0].style.left = divFirstMovementCount * 30 + "px";
+      divFirstMovementCount = divFirstMovementCount + 1;
+      if(divFirstMovementCount===10) {
+        divFirstMovementCount = 0;
+      }
+    }
+
+    let colorCount = 0;
+    function changeColor () { //류은이, 노수민, 곽윤호
+      let randomColor = ["antiquewhite", "blue", "chartreuse", "darkgoldenrod", "firebrick", "green", "hotpink", "indigo", "khaki"];
+      document.getElementById("root").style.backgroundColor = randomColor[colorCount];
+      colorCount++;
+      if (colorCount === randomColor.length) {
+        colorCount = 0;
+      }
+    }
+    
+    let moveCount = 100;
+    function moveCycle(){ //류은이
+      document.getElementById('root').children[2].style.left = moveCount + "px";
+      moveCount += 30;
+
+      if(moveCount > 310){
+        moveCount = 0;
+      }
+    }
+      // console.log(count);
+
+      // for(i=0; i <= randonColor.length; i++) {
+        // root_div.style.backgroundColor = randomColor[i];
+        // if(i === randomColor.length) {
+          // i = 0;
+        // }
+      // }
+      
+    
+    let pxCount = 10;
+    function ABC () { //곽윤호
+      pxCount+=10;
+      this.style.top=pxCount+"px"
+      this.style.left=pxCount+"px"
+      
+      if (pxCount > 100) {
+        pxCount=0;
+      }
+    }
+
+        // childrenStyle(0, "500px", "500px", "black", "0.8", "root");
+    // childrenStyle(1, "500px", "500px", "black", "0.8", "root");
+    // childrenStyle(2, "500px", "500px", "black", "0.8", "root");
+
+
+    /* test ------------ */
+    // function appenTag() {
+      // let obj = {
+        // createTag : document.createElement(a),
+        // 
+      // }
+    // }
+
+    // let root = document.getElementById("root");
+    // // let pro = [root.style.width, root.style.height];
+    // let pro = [width, height];
+    // console.dir(pro);
+    // let rootStyle = root.style;
+    // // 'root.style.width'="100px";
+    // rootStyle.pro[0]="100px";
+    // rootStyle.pro[1]="100px";
+    
+  </script>
 </body>
 </html>
