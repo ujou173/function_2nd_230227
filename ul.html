@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+
+    // 객체를 만드는 함수
+    function dataFunc(a, b, c, d) {
+      // 만들 객체의 구조
+      let obj = {
+        parentData : document.querySelector(a),
+        childrenData : document.createElement(b),
+        grandChildrenData : document.createElement(c),
+        grandChildrenTextData : d,
+      }
+      return obj;
+    }
+
+    // 파라미터용 배열
+    let tagArray = ["div", "footer", "section"];
+    // 함수를 콜링, 콜링할때 파라미터로 실질적인 값을 지정
+    let dataForm = dataFunc("#root", tagArray[0], tagArray[2], "Hello");
+
+    // 작동을 담당하지만 실질적인 값은 들어있지 않음
+    let root = dataForm.parentData;
+    console.dir(root);
+    let ul = dataForm.childrenData;
+    root.appendChild(ul);
+    let li = dataForm.grandChildrenData;
+    ul.appendChild(li);
+    li.textContent = dataForm.grandChildrenTextData;
+  </script>
+</body>
+</html>
