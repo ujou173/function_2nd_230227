@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #root {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" style="width: 250px;"></div>
+  <script>
+    let root = document.getElementById('root');
+    console.dir(root); // root에 관한 디렉토리 열람
+    console.dir(root.style); // root의 style에 관한 디렉토리 열람
+    root.style.width = "200px";
+    root.style.borderWidth = "1px";
+    root.style.borderColor = "red";
+    root.style.borderStyle = "solid"
+  </script>
+</body>
+</html>
